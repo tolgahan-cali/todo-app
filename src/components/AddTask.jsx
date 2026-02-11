@@ -10,7 +10,8 @@ export default function AddTask({ setTasks, tasks }) {
       task: taskInput,
       isChecked: false,
     };
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTasks([...tasks, newTask]);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
     setTaskInput("");
   }
 
