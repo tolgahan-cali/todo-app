@@ -1,9 +1,21 @@
 import { useState } from "react";
 
-export default function AddTask() {
+export default function AddTask({ setTasks, tasks }) {
   const [taskInput, setTaskInput] = useState("");
+
+  async function handleAddTask(e) {
+    e.preventDefault();
+    const newTask = {
+      id: tasks.length + 1,
+      task: taskInput,
+      isChecked: false,
+    };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTaskInput("");
+  }
+
   return (
-    <div class="input-wrapper">
+    <form onSubmit={handleAddTask} class="input-wrapper">
       <div class="input-icon">
         <svg
           width="24"
@@ -29,6 +41,6 @@ export default function AddTask() {
       />
 
       <button class="add-btn">Ekle</button>
-    </div>
+    </form>
   );
 }

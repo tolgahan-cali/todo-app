@@ -1,24 +1,20 @@
-import { useState } from "react";
 import TaskItem from "./TaskItem";
 
-export default function TaskList() {
-  const initialTasks = [
-    {
-      id: 1,
-      task: "BUGÜN OKULA GİT",
-      isChecked: false,
-    },
-    {
-      id: 2,
-      task: "EVRAKLARI TESLİM ET",
-      isChecked: false,
-    },
-  ];
-  const [tasks, setTasks] = useState(initialTasks);
+export default function TaskList({ tasks, onCheck, onDelete }) {
+  const sortedTasks = [...tasks].sort((a, b) =>
+    a.isChecked === b.isChecked ? 0 : a.isChecked ? 1 : -1,
+  );
   return (
     <ul class="task-list">
-      {tasks.map((task) => {
-        return <TaskItem key={task.id} task={task} />;
+      {sortedTasks.map((task) => {
+        return (
+          <TaskItem
+            onDelete={onDelete}
+            onCheck={onCheck}
+            key={task.id}
+            task={task}
+          />
+        );
       })}
     </ul>
   );

@@ -1,14 +1,10 @@
 import { useEffect } from "react";
 
-export default function TaskItem({ task }) {
-  useEffect(() => {
-    console.log(task);
-  }, []);
-
+export default function TaskItem({ task, onCheck, onDelete }) {
   return (
     <li class={`task-item ${task.isChecked && "completed"}`}>
       <div class="task-left">
-        <div class="custom-checkbox">
+        <div onClick={() => onCheck(task.id)} class="custom-checkbox">
           <svg
             width="16"
             height="16"
@@ -41,7 +37,11 @@ export default function TaskItem({ task }) {
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
           </svg>
         </button>
-        <button class="action-btn delete" title="Sil">
+        <button
+          onClick={() => onDelete(task.id)}
+          class="action-btn delete"
+          title="Sil"
+        >
           <svg
             width="18"
             height="18"
