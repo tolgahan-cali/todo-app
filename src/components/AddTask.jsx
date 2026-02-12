@@ -6,18 +6,17 @@ export default function AddTask({ setTasks, tasks }) {
   async function handleAddTask(e) {
     e.preventDefault();
     const newTask = {
-      id: tasks.length + 1,
+      id: crypto.randomUUID(),
       task: taskInput,
       isChecked: false,
     };
     setTasks([...tasks, newTask]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
     setTaskInput("");
   }
 
   return (
-    <form onSubmit={handleAddTask} class="input-wrapper">
-      <div class="input-icon">
+    <form onSubmit={handleAddTask} className="input-wrapper">
+      <div className="input-icon">
         <svg
           width="24"
           height="24"
@@ -35,13 +34,13 @@ export default function AddTask({ setTasks, tasks }) {
 
       <input
         type="text"
-        class="todo-input"
+        className="todo-input"
         placeholder="Yeni bir görev ekle..."
         value={taskInput}
         onChange={(e) => setTaskInput(e.target.value)}
       />
 
-      <button class="add-btn">Ekle</button>
+      <button className="add-btn">Ekle</button>
     </form>
   );
 }

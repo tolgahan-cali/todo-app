@@ -240,3 +240,52 @@ header p {
     padding-right: 80px;
   }
 }
+
+/* Ana kutuyu esnek yapıp dikey (column) hizaya çeviriyoruz */
+.task-item {
+  display: flex;
+  flex-direction: column; /* Alt alta dizilmesi için şart */
+  align-items: stretch; /* Genişliği tam kaplaması için */
+  gap: 0;
+}
+
+/* Üst kısımdaki checkbox ve butonların olduğu satır */
+.task-content-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Alt kısımdaki input alanı */
+.task-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px; /* Üst kısımla arasına boşluk */
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Şık bir çizgi */
+  animation: slideDown 0.2s ease; /* Açılırken yumuşak gelsin */
+}
+
+/* Inputun tasarımı */
+.edit-mode-input {
+  flex: 1; /* Satırın geri kalanını kapla */
+  padding: 8px 12px;
+  height: 38px;
+  margin: 0; /* Inputun dış boşluğunu sıfırla */
+  font-size: 0.95rem;
+}
+
+/* Ufak bir animasyon (İsteğe bağlı) */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
